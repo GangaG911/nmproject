@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Energy Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fade-in 0.8s ease-in-out forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-emerald-900 via-sky-900 to-slate-900 text-white font-sans">
+
+    <!-- Hero Section -->
+    <section class="text-center py-16 px-4">
+        <h1 class="text-4xl font-bold mb-4 animate-fade-in">Smart Energy Management</h1>
+        <p class="text-lg text-slate-200 max-w-xl mx-auto">
+            Optimize your power source intelligently using clean energy and real-time insights.
+        </p>
+
+    </section>
+    <a href="first.html" class="...">back</a>
+
+    <!-- Features -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 py-12">
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl shadow-xl p-6">
+            <h3 class="text-xl font-semibold mb-2 text-emerald-300">Renewable Integration</h3>
+            <p class="text-slate-200 text-sm">Use solar and wind energy efficiently with minimal costs.</p>
+        </div>
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl shadow-xl p-6">
+            <h3 class="text-xl font-semibold mb-2 text-sky-300">Smart Decision Making</h3>
+            <p class="text-slate-200 text-sm">AI-powered decisions based on cost, efficiency, and availability.</p>
+        </div>
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl shadow-xl p-6">
+            <h3 class="text-xl font-semibold mb-2 text-yellow-300">Data Visualization</h3>
+            <p class="text-slate-200 text-sm">Analyze energy usage, source balance, and cost over time.</p>
+        </div>
+    </section>
+
+    <!-- Chart Section -->
+    <section class="text-center py-10 px-4">
+        <h2 class="text-2xl font-semibold text-white mb-6">Energy Source Distribution</h2>
+        <div class="max-w-md mx-auto bg-slate-800 rounded-xl p-4 shadow-lg">
+            <canvas id="energyChart" width="400" height="400"></canvas>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center py-12 px-4">
+        <h2 class="text-2xl font-semibold mb-4 text-white">Ready to Go Smart?</h2>
+        <p class="text-slate-200 mb-6">
+            Start monitoring and optimizing your energy usage today.
+        </p>
+
+    </section>
+
+    <!-- Chart Script -->
+    <script>
+        const ctx = document.getElementById('energyChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Solar', 'Wind', 'Grid'],
+                datasets: [{
+                    label: 'Energy Sources',
+                    data: [45, 35, 20],
+                    backgroundColor: ['#FACC15', '#0EA5E9', '#EF4444'],
+                    borderColor: '#1E293B',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#E2E8F0',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

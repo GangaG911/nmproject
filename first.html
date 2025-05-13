@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Energy Optimizer - AI Smart Selector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-r from-sky-400 to-indigo-500 min-h-screen flex items-center justify-center">
+    <div id="main" class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full">
+        <h1 class="text-3xl font-bold text-center mb-6 text-indigo-700">Energy Efficiency Predictor</h1>
+
+        <div class="space-y-4">
+            <input type="number" id="sunlight" placeholder="Sunlight (%)" class="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-indigo-300">
+            <input type="number" id="wind" placeholder="Wind Speed (km/h)" class="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-indigo-300">
+            <input type="number" id="rainfall" placeholder="Rainfall (mm)" class="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-indigo-300">
+
+            <button onclick="predictEnergy()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded transition duration-300">
+                Predict Best Energy Source
+            </button>
+        </div>
+
+        <div id="result" class="mt-6 text-center text-xl font-bold text-green-700"></div>
+
+        <div class="mt-6 text-center">
+            <a href="#" onclick="goToDashboard()" class="text-indigo-700 hover:underline">Go to Dashboard</a>
+        </div>
+
+        <div class="mt-4 text-center">
+            <a href="second.html" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition duration-300 inline-block text-center">
+                Overview
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard" class="hidden fixed inset-0 bg-white p-8">
+        <button onclick="backToHome()" class="mb-4 text-blue-600 hover:underline">← Back</button>
+        <h2 class="text-2xl font-bold mb-4 text-center text-indigo-600">Energy Usage Dashboard</h2>
+        <div class="grid grid-cols-3 gap-4">
+            <div class="p-4 bg-yellow-100 text-center rounded-lg shadow">
+                <h3 class="font-semibold">Solar</h3>
+                <p>Use when sunlight is high and rain is low</p>
+            </div>
+            <div class="p-4 bg-blue-100 text-center rounded-lg shadow">
+                <h3 class="font-semibold">Wind</h3>
+                <p>Use when wind speed is strong</p>
+            </div>
+            <div class="p-4 bg-gray-100 text-center rounded-lg shadow">
+                <h3 class="font-semibold">Grid</h3>
+                <p>Fallback for low renewables</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function predictEnergy() {
+            const sunlight = parseFloat(document.getElementById("sunlight").value);
+            const wind = parseFloat(document.getElementById("wind").value);
+            const rainfall = parseFloat(document.getElementById("rainfall").value);
+
+            let resultText = "";
+
+            if (sunlight > 70 && rainfall < 20) {
+                resultText = "Recommended Source: Solar";
+            } else if (wind > 15) {
+                resultText = "Recommended Source: Wind";
+            } else {
+                resultText = "Recommended Source: Grid";
+            }
+
+            document.getElementById("result").innerText = resultText;
+        }
+
+        function goToDashboard() {
+            document.getElementById("main").classList.add("hidden");
+            document.getElementById("dashboard").classList.remove("hidden");
+        }
+
+        function backToHome() {
+            document.getElementById("dashboard").classList.add("hidden");
+            document.getElementById("main").classList.remove("hidden");
+        }
+    </script>
+
+</body>
+
+</html>
